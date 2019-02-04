@@ -1,0 +1,32 @@
+body {
+    background-color: #333;
+    color: #fff;
+}
+
+.content {
+    width: 80%;
+    margin: auto;
+}
+
+.listTitle {
+    text-align: center;
+    width: 100%;
+    display: block;
+    font-family: sans-serif;
+    font-size: xx-large;
+}
+
+.todoGrid {
+    display:grid;
+    grid-template-columns: 30px 200px;
+    grid-template-rows: auto;
+}
+
+.todoCheckBox {
+    width: 30px;
+    height: 30px;
+}
+
+.todoText {
+    font-size: large;
+}
