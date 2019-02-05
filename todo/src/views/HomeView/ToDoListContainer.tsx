@@ -3,4 +3,11 @@ import React from "react";
 import {ToDoList, TodoListProps} from "../../components/ToDoList";
 import {HomeViewProps} from "./HomeView";
 
-export const ToDoListContainer = inject((injected : HomeViewProps) => ({todos: injected.store.selectors.visibleToDos}))(observer((props : TodoListProps) => (<ToDoList todos={props.todos}/>)));
+const mapStoreToProps = (injected: HomeViewProps) => ({
+    todos: injected.store.selectors.visibleToDos,
+    updateToDoState: injected.store.actions.todoMutators.updateToDo
+});
+
+export const ToDoListContainer = inject(mapStoreToProps)(
+    observer(ToDoList)
+);

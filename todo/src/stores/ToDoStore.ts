@@ -22,14 +22,22 @@ export class ToDoState {
 }
 
 export class TodoMutators extends StoreExtension < ToDoState > {
-    @action public populateToDoData(todos : ToDo[]) {
+    @action public populateToDoData = (todos : ToDo[]) => {
         this.state.ToDoData = observable.array(todos);
+    }
+
+    @action public updateToDo = (name: string, status: boolean) => {
+        /** TODO: this is terrible, use a Map or something more optimized here. */
+        const todo = this.state.ToDoData.find((td) => td.name === name);
+        if (todo) {
+            todo.done = status;
+        }
     }
 }
 
 export class TodoSelectors extends StoreExtension < ToDoState > {
     /**This is computed to avoid redoing the map function every time the getter is called */
-    @computed public get allToDos() : Map < string,
+    @computed public get allToDos(): Map < string,
     ToDo > {
         return mapToDos(this.state.ToDoData);
     }
@@ -60,7 +68,7 @@ export class AppStateMutators extends StoreExtension < ToDoState > {
 }
 
 export class AppStateSelectors extends StoreExtension < ToDoState > {
-    get storeReady() : boolean {
+    get storeReady(): boolean {
         return this
             .state
             .AppState
@@ -68,7 +76,7 @@ export class AppStateSelectors extends StoreExtension < ToDoState > {
             .get();
     }
 
-    get showCompleted() : boolean {
+    get showCompleted(): boolean {
         return this
             .state
             .AppState

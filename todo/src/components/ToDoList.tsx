@@ -4,8 +4,8 @@ import {ToDo} from "../entities/todo";
 import {ToDoItem} from "./ToDoItem";
 
 export interface TodoListProps {
-    todos?: Map < string,
-    ToDo >;
+    todos?: Map<string,ToDo>;
+    updateToDoState?: (name: string, status: boolean) => void;
 }
 
 @observer
@@ -28,7 +28,7 @@ export class ToDoList extends React.Component < TodoListProps, {} > {
                 .props
                 .todos
                 .forEach((td) => {
-                    result.push(<ToDoItem key={td.name} td={td}/>);
+                    result.push(<ToDoItem key={td.name} td={td} updateToDoStatus={this.props.updateToDoState!}/>);
                 });
         }
         return result;
