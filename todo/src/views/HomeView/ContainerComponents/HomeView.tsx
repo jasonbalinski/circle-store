@@ -13,8 +13,7 @@ export interface HomeViewProps {
     HomeViewSelectors >;
 }
 
-export const HomeView = observer((props : HomeViewProps) => (
-
+export const HomeView = (props : HomeViewProps) => (
     <Provider store={props.store}>
         <div>
             <FilterControlContainer/>
@@ -22,4 +21,4 @@ export const HomeView = observer((props : HomeViewProps) => (
             <ToDoListContainer/>
         </div>
     </Provider>
-));
+);
