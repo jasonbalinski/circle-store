@@ -1,5 +1,6 @@
 import {observer} from "mobx-react";
 import React from "react";
+import { render } from "react-dom";
 import {ToDo} from "../entities/todo";
 
 export interface TodoItemProps {
@@ -7,21 +8,30 @@ export interface TodoItemProps {
     updateToDoStatus: (name: string, value: boolean) => void;
 }
 
-export const ToDoItem = observer((props : TodoItemProps) => (
-    <div className="todoItem">
-        <div className="todoCheckBox">
-            <input
-                type="checkbox"
-                checked={props.td.done}
-                data-name={props.td.name}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                    // TODO: refactor this out - make this a class
-                    const name = (e.target as HTMLInputElement).getAttribute("data-name");
-                    const value = (e.target as HTMLInputElement).checked;
-                    props.updateToDoStatus(name!, value);
-                }}
-            />
+@observer
+export class ToDoItem extends React.Component<TodoItemProps, {}> {
+    constructor(props: TodoItemProps) {
+        super(props);
+    }
+
+    public render() {
+        return (
+            <div className="todoItem">
+            <div className="todoCheckBox">
+                <input
+                    type="checkbox"
+                    checked={this.props.td.done}
+                    data-name={this.props.td.name}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                        // TODO: refactor this out - make this a class
+                        const name = (e.target as HTMLInputElement).getAttribute("data-name");
+                        const value = (e.target as HTMLInputElement).checked;
+                        this.props.updateToDoStatus(name!, value);
+                    }}
+                />
+            </div>
+            <div className="todoText">{this.props.td.name}</div>
         </div>
-        <div className="todoText">{props.td.name}</div>
-    </div>
-));
+        );
+    }
+}
