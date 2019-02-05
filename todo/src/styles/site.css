@@ -4,7 +4,7 @@ body {
 }
 
 .content {
-    width: 80%;
+    width: 50%;
     margin: auto;
 }
 
@@ -17,9 +17,12 @@ body {
 }
 
 .todoItem {
+    zoom: 2;
     background-color: #111;
     margin: 10px;
-    padding: 5px;
+    padding: 10px 10px 0 10px;
+    clear: left;
+    height: 30px;
 }
 
 .todoCheckBox {
@@ -29,7 +32,7 @@ body {
 }
 
 .todoText {
-    clear: left;
+    float: left;
     height: 30px;
     width: calc(80% - 30px);
     font-size: large;
