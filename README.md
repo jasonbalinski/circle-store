@@ -11,10 +11,9 @@ This is a store implementation using MobX to create observable state inside that
 
 ### Parts of the store
 
-#### Simple two value type store visualized
+#### Simple two value type store components visualized
 
 <pre>
-                                                                       
                                   State                                
           selectorA  ←  observableA   observableB  →  selectorB        
               |              ↑             ↑              |            
@@ -23,12 +22,11 @@ This is a store implementation using MobX to create observable state inside that
               |                 ↑       ↑                 |
               |                  Actions                  |
               |                     ↑                     |
-              |                 ---------                 |
-              |                 | Store |                 |
-              |                 ---------                 |
+              |              ---------------              |
+              |              |Store -> (UI)|              |
+              |              ---------------              |
               |                     ↑                     |
               |------------>  ViewSelector <--------------|
-
 </pre>
 
 #### State
@@ -58,11 +56,13 @@ Selectors are the inverse of Mutators. There should be one Selector class per ob
 ViewSelectors are the inverse of Actions.  They are the UI's surface for reading any application state, including API data.  Similar to the relationship of Actions to Mutators, ViewSelectors can reference multiple Selector classes.  Consider an application filtering data where the filter state is in one AppState observable, and the data is in another.  The actual filtering logic would be implemented in a reusable service outside the view folder, and a ViewSelector method would be implemented that ties it all together. See the computed for visibleToDos in the HomeViewSelector.ts file in the repo for an example of this.
 
 #### Store
-The store class is a simple generic wrapper for an Action and ViewSelector class.  It can be constructed anywhere in the startup logic for a given view, like so:
-`const state = new HomeViewState();
+The store class is a simple generic wrapper for an Action and ViewSelector class.  It can be constructed anywhere in the startup logic for a given view, like so: 
+<pre>
+const state = new HomeViewState();
 const actions = new HomeViewActions(state);
 const viewSelectors = new HomeViewSelectors(state);
-const store = new Store(state, actions, viewSelectors);`
+const store = new Store(state, actions, viewSelectors);
+</pre>
 Note that becasue the state is always serializable, it could be pulled from anywhere. It could even be deserialized from an API call itself, allowing the app state to even be built server side if it's more efficient for the app.
 
 ## How to get the most out of this pattern in large projects - reusable code
