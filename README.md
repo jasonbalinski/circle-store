@@ -32,6 +32,7 @@ This is a store implementation using MobX to create observable state inside that
 </pre>
 
 #### State
+##### (Observables)
 Application state in this pattern is extremely lightweight.  There should be one observable for each type of state data, whether internal state or api state.  Most internal api state can be kept in a single observable object, which allows easy, fast access into all of the state values for the view.
 
 All data in State observables should be simple Interfaced plain JavaScript objects - in other words they should not be classes with any logic on them. This allows the entire state to be serialized for testing, troubleshooting, UI undo scenarios, etc.
@@ -41,16 +42,20 @@ Be aware of how MobX treats various data types.  It is recommended to box primit
 It is allowable in this pattern to use direct API interfaces for your data types stored in state.  Those data types should then be transformed by the selectors on the way to the UI to a UI specific interface or class to avoid coupling the actual UI to the api data types. This allows preservation of the original API data shape and is useful in the case where entities may need to be modified, then sent back to the API with changes.
 
 #### Mutators
+##### (MobX Actions)
 There should be one Mutator class per observable in the app state (note you might store many related values in a single state observable). Mutators are the only thing allowed to modify state directly. They should always be Mobx actions.
 
-#### Actions
+#### Actions 
+##### (Async/Await lives here)
 There should be a single Action class per view. Actions represent the intent of the UI to modify data. They expose mutators to the application via the store.  They also allow chaining multiple actions or layering API calls via a data service with action calls to update state.  For this reason, Actions are the only place in the store structure that async is recommended. An example could be awaiting a call to the the Data service for initial data hydration, then calling a mutator to populate a state observable with that data.
 
 #### Selectors
+##### (MobX Computeds)
 Selectors are the inverse of Mutators. There should be one Selector class per observable in the app state (note you might store many related values in a single state observable). Selectors are the only thing allowed to read state directly. If any logic is included beyond a simple getter, selectors should usually be MobX computeds.
 
 #### ViewSelectors
-ViewSelectors are the inverse of Actions.  They are the UI's surface for reading any application state, including API data.
+##### (MobX Computeds)
+ViewSelectors are the inverse of Actions.  They are the UI's surface for reading any application state, including API data.  Similar to the relationship of Actions to Mutators, ViewSelectors can reference multiple Selector classes.  Consider an application filtering data where the filter state is in one AppState observable, and the data is in another.  The actual filtering logic would be implemented in a reusable service outside the view folder, and a ViewSelector method would be implemented that ties it all together. See the computed for visibleToDos in the HomeViewSelector.ts file in the repo for an example of this.
 
 #### Store
 The store class is a simple generic wrapper for an Action and ViewSelector class.  It can be constructed anywhere in the startup logic for a given view, like so:
