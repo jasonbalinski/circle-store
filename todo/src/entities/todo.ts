@@ -1,8 +1,8 @@
-export interface todo {
+export interface ToDo {
     name:string;
     done: boolean;
 }
 
-export function createToDo (name: string, done: boolean = false): todo {
-    return {name: name, done: done};
+export function createToDo(name: string, done: boolean = false): ToDo {
+    return {name, done};
 }

@@ -1,8 +1,7 @@
-import { todo, createToDo } from "../entities/todo";
-import { string } from "prop-types";
+import {createToDo, ToDo} from "../entities/todo";
 
-export function getToDos(): todo[] {
-    const todos: todo[] = [];
+export function getToDos(): ToDo[] {
+    const todos : ToDo[] = [];
     todos.push(createToDo("Get milk"));
     todos.push(createToDo("Get cereal"));
     todos.push(createToDo("Get eggs"));
