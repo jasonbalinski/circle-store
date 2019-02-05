@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import {ToDoDataService} from "./services-api/todoDataService";
 import {Store} from "./store-types/store";
 import "./styles/site.css";
-import {HomeView} from "./views/HomeView/ContainerComponents/HomeView";
+import {HomeView} from "./views/HomeView/HomeView";
 import {HomeViewState} from "./views/HomeView/Store/_____State/HomeViewState";
 import {HomeViewSelectors} from "./views/HomeView/Store/__ViewSelectors/HomeViewSelectors";
 import {HomeViewActions} from "./views/HomeView/Store/_Actions/HomeViewActions";
