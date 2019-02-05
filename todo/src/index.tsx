@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import {getToDos} from "./services-api/todoDataService";
+import { ToDoDataService } from "./services-api/todoDataService";
 import {Store} from "./store-types/store";
 import "./styles/site.css";
 import {HomeView} from "./views/HomeView/ContainerComponents/HomeView";
@@ -12,7 +12,5 @@ const state = new HomeViewState();
 const actions = new Actions(state);
 const viewSelectors = new ViewSelectors(state);
 const store = new Store(state, actions, viewSelectors);
-store
-    .actions
-    .populateToDOs(getToDos());
+store.actions.populateToDOs(ToDoDataService.getToDos());
 ReactDOM.render(React.createElement(HomeView, {store}), document.getElementById("root"));
