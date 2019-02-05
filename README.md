@@ -1,5 +1,5 @@
 # circle-store
-A simple todo app serving as sample implementation of the circle pattern for React and MobX.  It was created using TypeScript, React and MobX via CreateReactApp --TypeScript, then adding MobX and enabling decorators.  That is the only configuration that was done. You should be able to clone it and run 'npm start' to see it working locally.  Functionally it's very simple allowing you to mark todo's complete or not complete, and filter them based on that property (top right checkbox).
+In this repo, you'll find a simple todo app that implements the circle-store pattern I've laid out for React and MobX.  It was created using TypeScript, React and MobX via CreateReactApp --TypeScript, then adding MobX and enabling decorators.  That is the only configuration that was done. You should be able to clone it and run 'npm start' to see it working locally.  Functionally it's very simple allowing you to mark todo's complete or not complete, and filter them based on that property (top right checkbox).
 
 ## Overview of the circle pattern
 The pattern is so named because of the unidirectional path modifications to application state will take:
