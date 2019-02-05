@@ -1,7 +1,11 @@
-import {StoreExtension} from "./storeInterfacer";
+import {StoreExtension} from "./StoreExtension";
 
-/**Type S is the state type for the app */
-export interface Store < S > {
-    actions: StoreExtension < S >;
-    selectors: StoreExtension < S >;
+/**
+ * Types:
+ * S - state
+ * A - actions
+ * V - ViewSelectors
+ */
+export class Store<S,A,V> {
+    constructor(protected state:S, public actions: A, public viewSelectors: V) {}
 }

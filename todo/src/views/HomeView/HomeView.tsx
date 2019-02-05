@@ -1,12 +1,14 @@
-import {observer, Provider} from "mobx-react";
+import { observer, Provider } from "mobx-react";
 import React from "react";
-import {ToDo} from "../../entities/todo";
-import {ToDoStore} from "../../stores/ToDoStore";
-import {FilterControlContainer} from "./FilterControlContainer";
-import {ToDoListContainer} from "./ToDoListContainer";
+import { Store } from "../../store-types/store";
+import { FilterControlContainer } from "./FilterControlContainer";
+import { HomeViewState } from "./Store/_____State/HomeViewState";
+import { ViewSelectors } from "./Store/__ViewSelectors/ViewSelectors";
+import { Actions } from "./Store/_Actions/Actions";
+import { ToDoListContainer } from "./ToDoListContainer";
 
 export interface HomeViewProps {
-    store : ToDoStore;
+    store : Store<HomeViewState, Actions, ViewSelectors>;
 }
 
 export const HomeView = observer((props : HomeViewProps) => (

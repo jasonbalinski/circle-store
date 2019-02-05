@@ -4,8 +4,8 @@ import {ToDoList, TodoListProps} from "../../components/ToDoList";
 import {HomeViewProps} from "./HomeView";
 
 const mapStoreToProps = (injected: HomeViewProps) => ({
-    todos: injected.store.selectors.visibleToDos,
-    updateToDoState: injected.store.actions.todoMutators.updateToDo
+    todos: injected.store.viewSelectors.visibleToDos,
+    updateToDoState: injected.store.actions.updateToDo
 });
 
 export const ToDoListContainer = inject(mapStoreToProps)(

@@ -15,10 +15,9 @@ export const ToDoItem = observer((props : TodoItemProps) => (
                 checked={props.td.done}
                 data-name={props.td.name}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                    // TODO: refactor this out - maybe make this a class
+                    // TODO: refactor this out - make this a class
                     const name = (e.target as HTMLInputElement).getAttribute("data-name");
                     const value = (e.target as HTMLInputElement).checked;
-                    console.log("name/value", name, value);
                     props.updateToDoStatus(name!, value);
                 }}
             />
