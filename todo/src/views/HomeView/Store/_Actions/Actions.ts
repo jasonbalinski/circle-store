@@ -23,5 +23,10 @@ export class Actions extends StoreExtension < HomeViewState > {
     public toggleShowCompleted = this.appStateMutators.toggleShowCompleted;
 
     public populateToDOs = this.todoMutators.populateToDoData;
+
+    /**
+     * note - if you were persisting to an API, this is where you'd
+     * want to call the data service to do that work.
+     */
     public updateToDo = this.todoMutators.updateToDo;
 }
