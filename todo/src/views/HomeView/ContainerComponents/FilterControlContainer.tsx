@@ -1,6 +1,6 @@
 import {inject, observer} from "mobx-react";
 import React from "react";
-import {FilterControl, FilterControlProps} from "../../components/FilterControl";
+import {FilterControl, FilterControlProps} from "../../../components/FilterControl";
 import {HomeViewProps} from "./HomeView";
 
 const mapStoreToProps = (injected: HomeViewProps) => ({
