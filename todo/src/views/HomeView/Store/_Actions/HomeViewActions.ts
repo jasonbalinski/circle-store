@@ -14,7 +14,7 @@ import {TodoMutators} from "../____Mutators/ToDoMutators";
  * objects as needed to make the interface reasonable.
  */
 
-export class Actions extends StoreExtension < HomeViewState > {
+export class HomeViewActions extends StoreExtension < HomeViewState > {
     private appStateMutators = new AppStateMutators(this.state);
     private todoMutators = new TodoMutators(this.state);
 
