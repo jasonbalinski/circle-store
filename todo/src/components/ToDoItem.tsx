@@ -22,16 +22,17 @@ export class ToDoItem extends React.Component<TodoItemProps, {}> {
                     type="checkbox"
                     checked={this.props.td.done}
                     data-name={this.props.td.name}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                        // TODO: refactor this out - make this a class
-                        const name = (e.target as HTMLInputElement).getAttribute("data-name");
-                        const value = (e.target as HTMLInputElement).checked;
-                        this.props.updateToDoStatus(name!, value);
-                    }}
+                    onChange={this.onChange}
                 />
             </div>
             <div className="todoText">{this.props.td.name}</div>
         </div>
         );
+    }
+
+    private onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const name = (e.target as HTMLInputElement).getAttribute("data-name");
+        const value = (e.target as HTMLInputElement).checked;
+        this.props.updateToDoStatus(name!, value);
     }
 }
